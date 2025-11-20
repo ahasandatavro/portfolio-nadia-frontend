@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+html {
+  scroll-behavior: smooth;
+}
+
+@layer tailwind {
+    @tailwind base;
+}
+@tailwind components;
+@tailwind utilities;
+/* In your Tailwind CSS configuration or a custom CSS file */
+@layer utilities {
+    /* Act as a border */
+    .card-wrapper {
+        @apply relative overflow-hidden bg-gradient-to-b from-slate-700 to-slate-800;
+    }
+
+    /* Gradient */
+    .card-wrapper::before {
+        background: conic-gradient(
+                rgba(0, 123, 255, 0.4) 0deg,    /* Primary Blue with 40% opacity */
+                rgba(0, 123, 255, 0.2) 40deg,   /* Lighter Blue with 20% opacity */
+                transparent 80deg               /* Transparent beyond 80 degrees */
+        );
+        @apply absolute left-[-25%] top-[-25%] h-[150%] w-[150%] animate-border-spin content-[''];
+    }
+
+    /* Body */
+    .card-content {
+        @apply absolute left-[1px] top-[1px] h-[calc(100%-2px)] w-[calc(100%-2px)]  bg-gradient-to-b from-slate-800 to-slate-900;
+    }
+}
+@keyframes sparkle {
+    0%, 100% {
+        color: white; /* Default color */
+        opacity: 1;
+    }
+    50% {
+        color: grey; /* Transition color */
+        opacity: 0.6;
+    }
+}
+
+.sparkle-effect {
+    animation: sparkle 1.5s infinite ease-in-out;
+    display: inline-block;
+}
+
+/* Base transparent header */
+.main-header {
+  background-color: transparent;
+  transition: all 0.4s ease-in-out;
+}
+.main-header.scrolled {
+  @apply bg-lime-400/25 border-b border-white/10 shadow-md;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 25px rgba(163, 230, 53, 0.2);
+  transition: all 0.3s ease-in-out;
+}
